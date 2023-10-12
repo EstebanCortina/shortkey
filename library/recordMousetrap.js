@@ -1,0 +1,7 @@
+(function (d) {
+  function n(b, a, h) { if (this.recording) if ("keydown" == h.type) { 1 === b.length && g && k(); for (i = 0; i < a.length; ++i)l(a[i]); l(b) } else "keyup" == h.type && 0 < c.length && k(); else p.apply(this, arguments) } function l(b) { var a; for (a = 0; a < c.length; ++a)if (c[a] === b) return; c.push(b); 1 === b.length && (g = !0) } function k() { e.push(c); c = []; g = !1; clearTimeout(m); m = setTimeout(q, 1E3) } function r(b) {
+    var a; for (a = 0; a < b.length; ++a)b[a].sort(function (a, b) { return 1 < a.length && 1 === b.length ? -1 : 1 === a.length && 1 < b.length ? 1 : a > b ? 1 : -1 }), b[a] =
+      b[a].join("+")
+  } function q() { f && (r(e), f(e)); e = []; f = null; c = [] } var e = [], f = null, c = [], g = !1, m = null, p = d.prototype.handleKey; d.prototype.record = function (b) { var a = this; a.recording = !0; f = function () { a.recording = !1; b.apply(a, arguments) } }; d.prototype.handleKey = function () { n.apply(this, arguments) }; d.init()
+})(Mousetrap);
+(function (b) { var c = b.prototype.bind, a; b.prototype.bind = function () { a = arguments; if ("string" == typeof a[0] || a[0] instanceof Array) return c.call(this, a[0], a[1], a[2]); for (var b in a[0]) a[0].hasOwnProperty(b) && c.call(this, b, a[0][b], a[1]) }; b.init() })(Mousetrap);

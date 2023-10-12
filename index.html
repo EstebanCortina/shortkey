@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="grabando-cont"></div>
+
+  <div style="text-align: center;">
+    <h1>Título</h1>
+  </div>
+  <form>
+    <div>
+      <label for="iNombre"></label>
+      <input id="iNombre" type="text">
+    </div>
+    <div>
+      <button id="btnSubmit" type="button">Enviar</button>
+    </div>
+  </form>
+  <ul>
+    <a href="https://www.youtube.com/watch?v=vFBogvPqeiE" target="_blank">
+      <li>La pension</li>
+    </a>
+    <a href="https://www.facebook.com/" target="_blank">
+      <li>Facebook</li>
+    </a>
+    <a href="https://www.instagram.com/" target="_blank">
+      <li>Instagram</li>
+    </a>
+  </ul>
+</body>
+<div>
+  <button id="btnGrabar">Grabar</button>
+  <button id="btnAlerta">Alerta</button>
+</div>
+
+<div id="elementosHTML"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./library/Mousetrap.js"></script>
+<script src="./library/recordMousetrap.js"></script>
+<script src="/js/index.js"></script>
+<script type="module" src="/shortkey/default_binds.js"></script>
+<script type="module" src="/shortkey/custom_binds.js"></script>
+
+</html>
