@@ -39,6 +39,18 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+// Agrega un evento 'keydown' al documento
+document.addEventListener('keydown', function (event) {
+  // Obtiene el código de la tecla presionada
+  const keyCode = event.key;
+
+  // Crea un elemento de párrafo (p) para mostrar el código de la tecla
+  const p = document.createElement('p');
+  p.textContent = `Tecla presionada: ${keyCode}`;
+
+  // Agrega el elemento de párrafo al cuerpo del documento (body)
+  document.body.appendChild(p);
+});
 
 
 

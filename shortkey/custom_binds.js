@@ -26,27 +26,34 @@ function buscarElementoHTMLByName(name) {
 
 function recordSequence() {
   Mousetrap.record(async function (sequence) {
-    let elementContent = prompt(`Asignar: ${sequence[0]}`, "Contenido del elemento:");
-    try {
-      let element = await buscarElementoHTMLByTextContent(elementContent);
-      marcarElementos(element);
-      setTimeout(() => {
-        if (window.confirm("Esta seguro?")) {
-          console.log(element);
-          Mousetrap.bind(sequence, function () {
-            console.log(sequence);
-            element[0].click();
-          });
-          desmarcarElementos(element);
-        } else {
-          desmarcarElementos(element);
-        }
-      }, 2000);
-      grabando_cont.innerHTML = "";
-    } catch (error) {
-      alert(error);
+    if (sequence.length !== 0) {
+      let elementContent = prompt(`Asignar: ${sequence[0]}`, "Contenido del elemento:");
+      try {
+        let element = await buscarElementoHTMLByTextContent(elementContent);
+        marcarElementos(element);
+        setTimeout(() => {
+          if (window.confirm("Esta seguro?")) {
+            console.log(element);
+            Mousetrap.bind(sequence, function () {
+              console.log(sequence);
+              element[0].click();
+            });
+            desmarcarElementos(element);
+          } else {
+            desmarcarElementos(element);
+          }
+        }, 2000);
+        grabando_cont.innerHTML = "";
+      } catch (error) {
+        alert(error);
+      }
+    } else {
+      alert("Atajo vacio, cancelando");
     }
+
   });
 }
+
+console.log(await buscarElementoHTMLByTextContent('Facebook'))
 
 export { recordSequence }
