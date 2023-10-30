@@ -56,4 +56,3 @@ function recordSequence() {
 
 console.log(await buscarElementoHTMLByTextContent('Facebook'))
 
-export { recordSequence }

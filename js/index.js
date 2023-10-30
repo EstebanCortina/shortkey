@@ -1,3 +1,6 @@
+import { recordSequence } from "../shortkey/stages/actions/record.js";
+
+
 const btnGrabar = document.getElementById("btnGrabar");
 const btnAlerta = document.getElementById("btnAlerta");
 let grabando_cont = document.getElementById("grabando-cont");
@@ -52,5 +55,6 @@ document.addEventListener('keydown', function (event) {
   document.body.appendChild(p);
 });
 
+export { grabando_cont }
 
 
