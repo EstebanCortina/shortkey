@@ -1,5 +1,5 @@
 import { recordSequence } from "../shortkey/stages/actions/record.js";
-
+import { find_by_text_content } from "../helpers/find_by_text_content.js";
 
 const btnGrabar = document.getElementById("btnGrabar");
 const btnAlerta = document.getElementById("btnAlerta");
@@ -42,6 +42,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+/*
 // Agrega un evento 'keydown' al documento
 document.addEventListener('keydown', function (event) {
   // Obtiene el código de la tecla presionada
@@ -55,6 +56,40 @@ document.addEventListener('keydown', function (event) {
   document.body.appendChild(p);
 });
 
-export { grabando_cont }
+*/
+
+
+// MODAL //
+
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+const searchModal = document.getElementById('search-modal');
+
+searchInput.addEventListener('keyup', async function () {
+  searchResults.innerHTML = '';
+  try {
+    const query = searchInput.value;
+    if (query) {
+      searchResults.style.display = 'block';
+      let elements = await find_by_text_content(query);
+      console.log(elements);
+      elements.forEach(element => {
+        const resultadoElemento = document.createElement('p');
+        resultadoElemento.textContent = element.innerText; // Ajusta esto según la estructura de tus datos.
+        // Agrega el elemento de resultado al elemento 'search-results'.
+        searchResults.appendChild(resultadoElemento);
+      });
+    } else {
+      searchResults.innerHTML = '';
+      searchResults.style.display = 'none';
+    }
+  } catch (error) {
+    alert(error);
+  }
+});
+
+
+
+export { grabando_cont, searchModal }
 
 
