@@ -1,13 +1,21 @@
-import { marcarElementos, desmarcarElementos } from "../helpers/style_functions.js";
+import {
+  marcarElementos,
+  desmarcarElementos,
+} from "../helpers/style_functions.js";
 
 function buscarElementoHTMLByTextContent(textParam) {
   return new Promise((resolve) => {
     // Selecciona todos los elementos en el documento
-    let todosLosElementos = document.querySelectorAll('*');
+    let todosLosElementos = document.querySelectorAll("*");
 
     // Filtra los elementos cuyo textContent coincide con el texto buscado
-    let elementosCoincidentes = Array.from(todosLosElementos).filter(function (elemento) {
-      return elemento.textContent.includes(textParam) && elemento.children.length === 0;
+    let elementosCoincidentes = Array.from(todosLosElementos).filter(function (
+      elemento
+    ) {
+      return (
+        elemento.textContent.includes(textParam) &&
+        elemento.children.length === 0
+      );
     });
     resolve(elementosCoincidentes);
   });
@@ -23,11 +31,13 @@ function buscarElementoHTMLByName(name) {
   });
 }
 
-
 function recordSequence() {
   Mousetrap.record(async function (sequence) {
     if (sequence.length !== 0) {
-      let elementContent = prompt(`Asignar: ${sequence[0]}`, "Contenido del elemento:");
+      let elementContent = prompt(
+        `Asignar: ${sequence[0]}`,
+        "Contenido del elemento:"
+      );
       try {
         let element = await buscarElementoHTMLByTextContent(elementContent);
         marcarElementos(element);
@@ -50,9 +60,5 @@ function recordSequence() {
     } else {
       alert("Atajo vacio, cancelando");
     }
-
   });
 }
-
-console.log(await buscarElementoHTMLByTextContent('Facebook'))
-

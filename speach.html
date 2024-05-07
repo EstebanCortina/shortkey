@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reconocimiento de Voz</title>
+</head>
+
+<body>
+  <button id="start-recognition">Iniciar Reconocimiento</button>
+  <div id="output"></div>
+
+  <script>
+    // Comprobamos si el navegador soporta la API de reconocimiento de voz
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      // Creamos un objeto para el reconocimiento de voz
+      var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      var output = document.getElementById('output');
+
+      // Configuramos algunas opciones
+      recognition.lang = 'es-ES'; // Establecemos el idioma a español
+      recognition.interimResults = false; // Mostrar resultados provisionales (true/false)
+
+      // Evento que se dispara cuando se inicia el reconocimiento
+      recognition.onstart = function () {
+        output.innerHTML = 'Escuchando...';
+      };
+
+      // Evento que se dispara cuando se detiene el reconocimiento
+      recognition.onend = function () {
+        output.innerHTML += '<br>Fin del reconocimiento.';
+      };
+
+      // Evento que se dispara cuando se obtiene un resultado
+      recognition.onresult = function (event) {
+        var transcript = event.results[0][0].transcript;
+        output.innerHTML += '<br><strong>Texto reconocido:</strong> ' + transcript;
+        // Aquí puedes realizar acciones con el texto reconocido, como enviarlo a un servidor, procesarlo, etc.
+      };
+
+      // Evento que se dispara en caso de error
+      recognition.onerror = function (event) {
+        output.innerHTML += '<br>Error durante el reconocimiento: ' + event.error;
+      };
+
+      // Evento que se dispara al hacer clic en el botón de inicio de reconocimiento
+      document.getElementById('start-recognition').onclick = function () {
+        output.innerHTML = 'Iniciando reconocimiento...';
+        recognition.start();
+      };
+    } else {
+      // El navegador no soporta la API de reconocimiento de voz
+      alert('El navegador no soporta la API de reconocimiento de voz.');
+    }
+  </script>
+</body>
+
+</html>
